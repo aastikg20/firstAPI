@@ -24,10 +24,6 @@ database.once('connected', () => {
 const app = express();
 app.use(express.json());
 
-app.listen(port, () => {
-    console.log(`Server Started at ${port}`)
-})
-
 const routes = require('./routes/routes');
 
 app.use('/api', routes)
