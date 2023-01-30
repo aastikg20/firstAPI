@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router()
 
 module.exports = router;
-const Model = require('../models/model');
+const Model = require('../model/model');
 
 //Post Method
 router.post('/post', async (req, res) => {
