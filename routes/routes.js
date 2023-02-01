@@ -20,6 +20,11 @@ router.post('/post', async (req, res) => {
     }
 })
 
+router.get("/users", async (req, res) => {
+    const users = await Model.find({});
+    res.send(users);
+  });
+
 //Get all Method
 router.get('/getAll', (req, res) => {
     res.send('Get All API')
@@ -36,6 +41,6 @@ router.patch('/update/:id', (req, res) => {
 })
 
 //Delete by ID Method
-router.delete('/delete/:id', (req, res) => {
-    res.send('Delete by ID API')
+router.delete('/delete/:name', (req, res) => {
+    res.send('Delete by name API')
 })
