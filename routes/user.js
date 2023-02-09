@@ -19,7 +19,7 @@ router.post('/tagread/saveTagData', async (req, res) => {
       }
 });
 
-router.get('/TagData', async (req, res) => {
+router.get('/tagData', async (req, res) => {
     Data.find((error, data) => {
       if (error) {
         return res.status(500).send(error);
