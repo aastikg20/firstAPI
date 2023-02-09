@@ -14,12 +14,14 @@ database.on('error', (error) => {
 database.once('connected', () => {
     console.log('Database Connected');
 })
+
+const port=process.env.PORT || 3000
 const app = express();
 mongoose
   .connect(mongoString, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() =>
-    app.listen(process.env.PORT, () =>
-      console.log(`Server running on port ${process.env.PORT}`)
+    app.listen(port, () =>
+      console.log(`Server running on port ${port}`)
     )
   )
   .catch((err) => console.log(err));
