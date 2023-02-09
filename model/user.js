@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
 const dataSchema = new mongoose.Schema({
-    tagname: String,
-    currtime: String
+    tid : String,
+    epc : String,
+    user : String
   });
 
-  module.exports = mongoose.model('logs', dataSchema)
+  module.exports = mongoose.model('RFIDdata', dataSchema)

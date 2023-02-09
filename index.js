@@ -1,9 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const xlsx = require('xlsx');
-const fs = require('fs');
 const Data = require('./model/user');
-const excel = require('exceljs');
 
 require('dotenv').config();
 
@@ -20,45 +17,6 @@ database.once('connected', () => {
 })
 const app = express();
 
-var workbook = new excel.Workbook();
-var worksheet;
-var data = [];
-var lastRow;
-let timer;
-fs.watch("C:\\Users\\Vibration Lab\\Desktop\\test.xlsx", async (eventType, filename) => {
-  if (eventType === 'change' && filename === 'test.xlsx') {
-    if (!fs.existsSync("C:\\Users\\Vibration Lab\\Desktop\\test.xlsx")) {
-      console.error('File does not exist');
-      return;
-    }
-    clearTimeout(timer);
-  timer = setTimeout(() => {
-  workbook.xlsx.readFile("C:\\Users\\Vibration Lab\\Desktop\\test.xlsx")
-    .then(function() {
-      worksheet = workbook.getWorksheet(1);
-      lastRow = worksheet.lastRow;
-      tagname="";
-      currtime="";
-      lastRow.eachCell(function(cell, colNumber) {
-        tagname=cell.value;
-      });
-      currtime=new Time()
-
-    var newData = new Data({
-      tagname: tagname,
-      currtime: currtime
-    });
-
-    newData.save(function(error) {
-      if (error) {
-        console.log(error);
-      }
-    });
-      },500)
-      });
-  }
-});
-
 mongoose.connect("mongodb+srv://aastik:aastik@cluster0.vd5wjct.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true }, (error) => {
   if (error) {
     console.error(error);
@@ -66,7 +24,6 @@ mongoose.connect("mongodb+srv://aastik:aastik@cluster0.vd5wjct.mongodb.net/?retr
     console.log('Successfully connected to MongoDB');
   }
 });
-
 
 const port = process.env.PORT || 3000;
 
