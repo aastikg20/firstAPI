@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Data = require('./model/user');
 
 require('dotenv').config();
 
@@ -16,20 +15,14 @@ database.once('connected', () => {
     console.log('Database Connected');
 })
 const app = express();
-
-mongoose.connect("mongodb+srv://aastik:aastik@cluster0.vd5wjct.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true }, (error) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('Successfully connected to MongoDB');
-  }
-});
-
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
-});
+mongoose
+  .connect(mongoString, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() =>
+    app.listen(process.env.PORT, () =>
+      console.log(`Server running on port ${process.env.PORT}`)
+    )
+  )
+  .catch((err) => console.log(err));
 app.use(express.json());
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");

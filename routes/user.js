@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const Data = require('../model/user');
 
 const router = express.Router();
@@ -24,9 +23,7 @@ router.get('/tagData', async (req, res) => {
       if (error) {
         return res.status(500).send(error);
       }
-      else{
       return res.status(200).send(data);
-      }
     });
   });
 
