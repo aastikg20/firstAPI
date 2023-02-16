@@ -4,10 +4,6 @@ const dataSchema = new mongoose.Schema({
     tid : String,
     epc : String,
     user : String,
-    createdAt: {
-      type: Date,
-      default: Date.now
-    }
-  });
+  },{timestamps:true});
 
   module.exports = mongoose.model('RFIDdata', dataSchema)
