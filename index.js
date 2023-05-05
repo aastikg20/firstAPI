@@ -15,7 +15,7 @@ database.once('connected', () => {
     console.log('Database Connected');
 })
 
-const port=process.env.PORT || 3000
+const port=process.env.PORT
 const app = express();
 mongoose
   .connect(mongoString, { useNewUrlParser: true, useUnifiedTopology: true })
